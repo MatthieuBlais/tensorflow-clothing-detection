@@ -11,11 +11,6 @@ import tarfile
 import tempfile
 import urllib
 
-from IPython import display
-from ipywidgets import interact
-from ipywidgets import interactive
-from matplotlib import gridspec
-from matplotlib import pyplot as plt
 import numpy as np
 from PIL import Image, ImageDraw
 import collections

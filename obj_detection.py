@@ -9,7 +9,6 @@ import zipfile
 import json
 from collections import defaultdict
 from io import StringIO
-from matplotlib import pyplot as plt
 from PIL import Image
 import requests
 from lib.helpers import DatabaseConnector as dtb

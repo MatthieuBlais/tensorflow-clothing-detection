@@ -49,8 +49,8 @@ PERSON_DETECTION_NUM_CLASSES = 90
 
 ## FIND IMAGES IN DATABASE
 db = DatabaseInterface(LAYER_FOLDER)
-print("GET IMAGES")
-sys.exit()
+
+
 if LOCAL_MODE:
 	downloader = ImageDownloader(images, "tmp")
 	downloader.set_local_mode(LOCAL_PICTURES+CURRENT_LABEL+".json")
