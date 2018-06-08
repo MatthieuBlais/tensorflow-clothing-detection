@@ -19,7 +19,7 @@ import logging
 
 import tensorflow as tf
 from google.protobuf import text_format
-import string_int_label_map_pb2
+from lib import string_int_label_map_pb2
 
 import sys
 

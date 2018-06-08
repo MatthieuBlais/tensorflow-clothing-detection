@@ -15,7 +15,7 @@ urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 CURRENT_PATH = "./"
 MODELS_PATH = "../"
 
-CURRENT_LABEL = "skirts"
+CURRENT_LABEL = "shorts"
 LABELS = {
 	"jeans": {"category_ids": [45,56,101,122], "subcategory_ids": []}, #19000
 	"tops": {"category_ids": [168,100,79], "subcategory_ids": []}, # 67000
@@ -50,9 +50,9 @@ PERSON_DETECTION_NUM_CLASSES = 90
 ## FIND IMAGES IN DATABASE
 db = DatabaseInterface(LAYER_FOLDER)
 print("GET IMAGES")
-sys.exit()
+
 if LOCAL_MODE:
-	downloader = ImageDownloader(images, "tmp")
+	downloader = ImageDownloader([], "tmp")
 	downloader.set_local_mode(LOCAL_PICTURES+CURRENT_LABEL+".json")
 	total_image = len(downloader.read())
 else:
@@ -125,7 +125,7 @@ while not EXIT_FLAG:
 		print("SAVE", len(objects))
 		db.save_objects(current_image, objects, local=LOCAL_MODE)
 	except:
-		print "ERROR"
+		print("ERROR")
 		errors.append(downloaded_queue[image_index]["url"])
 	image_index += 1
 	# if image_index % 100 == 0:

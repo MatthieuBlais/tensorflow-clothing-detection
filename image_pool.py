@@ -26,7 +26,7 @@ class ImageDownloader(object):
 		self.downloaded = []
 		self.isDone = False
 		self.image_folder = image_folder
-		self.errors = []
+		self.error_list = []
 		self.id = id
 
 	def start(self):
@@ -66,21 +66,21 @@ class ImageDownloader(object):
 		self.isDone = True
 		print("Downloading done")
 
-	def errors():
-		return self.errors
+	def errors(self):
+		return self.error_list
 
 	def download_image(self, url, filename):
 		try:
 			with open(filename, 'wb') as handle:
 				response = requests.get(url, stream=True, verify=False)
 				if not response.ok:
-					self.errors.append(url)
+					self.error_list.append(url)
 				for block in response.iter_content(1024):
 					if not block:
 						break
 					handle.write(block)
-		except Exception, e:
-			self.errors.append(url)
+		except Exception as e:
+			self.error_list.append(url)
 
 def un_normalized(x, size):
 	return int(round(x*size))
@@ -110,7 +110,6 @@ def crop_object(obj, src, destination):
         box = (un_normalized(obj["xmin"], im_size[0]), un_normalized(obj["ymin"], im_size[1]),un_normalized(obj["xmax"], im_size[0]),un_normalized(obj["ymax"], im_size[1]))
         # Crop Image
         area = im.crop(box)
-        print destination
         area.save(destination,"JPEG")
         return True
     except:

@@ -19,17 +19,17 @@ class DatabaseInterface(object):
 		if len(subcat_ids)>0:
 			subcat_query = "or subcategory_id in ("+",".join([str(x) for x in subcat_ids])+")"
 
-		print "QUERY 1"
+		print("QUERY 1")
 		query="SELECT id from products where category_id in ("+",".join([str(x) for x in cat_ids])+") "+subcat_query+""
 		products = self.db.execute(query)
 		products = ["\'"+x[0]+"\'" for x in products]
 
-		print "QUERY 2"
+		print("QUERY 2")
 		query="SELECT distinct url from images i join (SELECT id from products where category_id in ("+",".join([str(x) for x in cat_ids])+") "+subcat_query+") p on i.product_id = p.id"
 		all_images = self.db.execute(query)
 		all_images = [x[0] for x in all_images]
 
-		print "QUERY 3"
+		print("QUERY 3")
 		query="SELECT distinct i.url from object_detections o join (SELECT distinct url from images i join (SELECT id from products where category_id in ("+",".join([str(x) for x in cat_ids])+") "+subcat_query+") p on i.product_id = p.id) i on i.url = o.url"
 		existing_images = self.db.execute(query)
 		existing_images = [x[0] for x in existing_images]

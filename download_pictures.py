@@ -1,3 +1,5 @@
+from dotenv import load_dotenv
+load_dotenv(".env")
 import image_pool
 from image_pool import ImageDownloader
 from database import DatabaseInterface
@@ -8,7 +10,7 @@ urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
 CURRENT_PATH = "./"
 
-CURRENT_LABEL = "pants"
+CURRENT_LABEL = "tshirt"
 LABELS = {
 	"jeans": {"category_ids": [45,56,101,122], "subcategory_ids": []}, #19000
 	"tops": {"category_ids": [168,100,79], "subcategory_ids": []}, # 67000
@@ -31,43 +33,43 @@ print("GET IMAGES")
 images = db.load_pictures(LABELS[CURRENT_LABEL]["category_ids"], LABELS[CURRENT_LABEL]["subcategory_ids"])
 
 total_image = len(images)
-print "IMAGES", len(images)
+print("IMAGES", len(images))
 #sys.exit()
 ## START DOWNLOADING THREAD
 
 modulo = len(images) % 10
 
-total_per_thread = (total_image-modulo) / 10
+total_per_thread = int((total_image-modulo) / 10)
 
 
-downloader = ImageDownloader(images[:total_per_thread], PICTURE_FOLDER+"pants", id="a")
+downloader = ImageDownloader(images[:total_per_thread], PICTURE_FOLDER+"tshirt", id="a")
 downloader.start()
 
-downloader1 = ImageDownloader(images[total_per_thread:(total_per_thread*2)], PICTURE_FOLDER+"pants", id="b")
+downloader1 = ImageDownloader(images[total_per_thread:(total_per_thread*2)], PICTURE_FOLDER+"tshirt", id="b")
 downloader1.start()
 
-downloader2 = ImageDownloader(images[(total_per_thread*2):(total_per_thread*3)], PICTURE_FOLDER+"pants", id="c")
+downloader2 = ImageDownloader(images[(total_per_thread*2):(total_per_thread*3)], PICTURE_FOLDER+"tshirt", id="c")
 downloader2.start()
 
-downloader3 = ImageDownloader(images[(total_per_thread*3):(total_per_thread*4)], PICTURE_FOLDER+"pants", id="d")
+downloader3 = ImageDownloader(images[(total_per_thread*3):(total_per_thread*4)], PICTURE_FOLDER+"tshirt", id="d")
 downloader3.start()
 
-downloader4 = ImageDownloader(images[(total_per_thread*4):(total_per_thread*5)], PICTURE_FOLDER+"pants", id="e")
+downloader4 = ImageDownloader(images[(total_per_thread*4):(total_per_thread*5)], PICTURE_FOLDER+"tshirt", id="e")
 downloader4.start()
 
-downloader5 = ImageDownloader(images[(total_per_thread*5):(total_per_thread*6)], PICTURE_FOLDER+"pants", id="f")
+downloader5 = ImageDownloader(images[(total_per_thread*5):(total_per_thread*6)], PICTURE_FOLDER+"tshirt", id="f")
 downloader5.start()
 
-downloader6 = ImageDownloader(images[(total_per_thread*6):(total_per_thread*7)], PICTURE_FOLDER+"pants", id="g")
+downloader6 = ImageDownloader(images[(total_per_thread*6):(total_per_thread*7)], PICTURE_FOLDER+"tshirt", id="g")
 downloader6.start()
 
-downloader7 = ImageDownloader(images[(total_per_thread*7):(total_per_thread*8)], PICTURE_FOLDER+"pants", id="h")
+downloader7 = ImageDownloader(images[(total_per_thread*7):(total_per_thread*8)], PICTURE_FOLDER+"tshirt", id="h")
 downloader7.start()
 
-downloader8 = ImageDownloader(images[(total_per_thread*8):(total_per_thread*9)], PICTURE_FOLDER+"pants", id="i")
+downloader8 = ImageDownloader(images[(total_per_thread*8):(total_per_thread*9)], PICTURE_FOLDER+"tshirt", id="i")
 downloader8.start()
 
-downloader9 = ImageDownloader(images[(total_per_thread*9):], PICTURE_FOLDER+"pants", id="j")
+downloader9 = ImageDownloader(images[(total_per_thread*9):], PICTURE_FOLDER+"tshirt", id="j")
 downloader9.start()
 
 
