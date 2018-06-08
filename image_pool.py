@@ -11,7 +11,7 @@ import time
 import json
 from shutil import copyfile
 from lib.helpers import RestoreLocalAnalysis
-
+import sys
 
 def copy_image(src, dest, keep=False):
 	if not keep:
@@ -49,11 +49,10 @@ class ImageDownloader(object):
 
 	def set_local_mode(self, json_file, restore_folder=None):
 		self.downloaded = json.load(open(json_file))
-		if restore:
-			print "IMAGES", len(self.downloaded)
+		if restore_folder:
+			print("IMAGES", len(self.downloaded))
 			self.downloaded = RestoreLocalAnalysis().filter_pictures_already_analyzed(self.downloaded, restore_folder)
-			print "IMAGES", len(self.downloaded)
-			sys.exit()
+			print("AFTER IMAGES", len(self.downloaded))
 		self.isDone = True
 
 	def run(self):
