@@ -1,6 +1,7 @@
 import image_pool
 from image_pool import ImageDownloader
 from database import DatabaseInterface
+from lib.helpers import RestoreLocalAnalysis
 import json
 import sys
 import urllib3
@@ -32,7 +33,12 @@ images = db.load_pictures(LABELS[CURRENT_LABEL]["category_ids"], LABELS[CURRENT_
 
 total_image = len(images)
 print "IMAGES", len(images)
-#sys.exit()
+
+images = RestoreLocalAnalysis().filter_pictures_already_analyzed(images, LAYER_FOLDER)
+
+total_image = len(images)
+print "IMAGES", len(images)
+sys.exit()
 ## START DOWNLOADING THREAD
 
 modulo = len(images) % 10
