@@ -11,7 +11,7 @@ urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
 CURRENT_PATH = "./"
 
-CURRENT_LABEL = "tshirt"
+CURRENT_LABEL = "jeans"
 LABELS = {
 	"jeans": {"category_ids": [45,56,101,122], "subcategory_ids": []}, #19000
 	"tops": {"category_ids": [168,100,79], "subcategory_ids": []}, # 67000

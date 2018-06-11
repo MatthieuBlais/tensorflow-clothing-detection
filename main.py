@@ -15,7 +15,7 @@ urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 CURRENT_PATH = "./"
 MODELS_PATH = "../"
 
-CURRENT_LABEL = "shorts"
+CURRENT_LABEL = "jeans"
 LABELS = {
 	"jeans": {"category_ids": [45,56,101,122], "subcategory_ids": []}, #19000
 	"tops": {"category_ids": [168,100,79], "subcategory_ids": []}, # 67000
@@ -54,6 +54,7 @@ db = DatabaseInterface(LAYER_FOLDER)
 if LOCAL_MODE:
 	downloader = ImageDownloader([], "tmp")
 	downloader.set_local_mode(LOCAL_PICTURES+CURRENT_LABEL+".json", restore_folder=LAYER_FOLDER)
+	db.set_treshold(downloader.get_restore_treshold())
 	total_image = len(downloader.read())
 	print(total_image)
 else:

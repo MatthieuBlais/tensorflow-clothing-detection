@@ -30,6 +30,7 @@ class ImageDownloader(object):
 		self.image_folder = image_folder
 		self.error_list = []
 		self.id = id
+		self.restore_treshold= -1
 
 	def start(self):
 		self.t = Thread(target=self.run, args=())
@@ -50,10 +51,14 @@ class ImageDownloader(object):
 	def set_local_mode(self, json_file, restore_folder=None):
 		self.downloaded = json.load(open(json_file))
 		if restore_folder:
-			print("IMAGES", len(self.downloaded))
+			before_restore =  len(self.downloaded)
 			self.downloaded = RestoreLocalAnalysis().filter_pictures_already_analyzed(self.downloaded, restore_folder)
+			self.restore_treshold = before_restore - len(self.downloaded)
 			print("AFTER IMAGES", len(self.downloaded))
 		self.isDone = True
+
+	def get_restore_treshold(self):
+		return self.restore_treshold
 
 	def run(self):
 		print("Starting downloading pictures")

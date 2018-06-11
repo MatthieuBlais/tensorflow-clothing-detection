@@ -13,6 +13,10 @@ class DatabaseInterface(object):
 		self.total_layers = 0
 		self.queries=[]
 
+	def set_treshold(self, treshold):
+		if treshold > 0:
+			self.total_layers = treshold
+
 
 	def load_pictures(self, cat_ids, subcat_ids):
 		subcat_query = ""
