@@ -18,7 +18,7 @@ This pipeline detects clothes, but you can reuse it for whatever purpose
 ## 3. Pipeline description
 
 
-![alt text](https://raw.githubusercontent.com/MatthieuBlais/tensorflow-clothing-detection/master/Pipeline.xml)
+![alt text](https://raw.githubusercontent.com/MatthieuBlais/tensorflow-clothing-detection/master/pipeline.png)
 
 1. We load an image
 2. We remove the background with deeplab (we extract the persons)
